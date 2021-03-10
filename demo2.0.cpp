@@ -1,96 +1,94 @@
-//¿É´æµµ,¶Áµµ»á³öbug[ÒÑÔİÍ£¸Ã¹¦ÄÜ],Ô­Òò¿ÉÄÜ:1.ÎÄ¼ş²Ù×÷²»µ± 2.×Ö·û±àÂë²»·û
+//å¯å­˜æ¡£,è¯»æ¡£ä¼šå‡ºbug[å·²æš‚åœè¯¥åŠŸèƒ½],åŸå› å¯èƒ½:1.æ–‡ä»¶æ“ä½œä¸å½“ 2.å­—ç¬¦ç¼–ç ä¸ç¬¦
 
 #define _CRT_SECURE_NO_WARNINGS
 #include<stdio.h>
 #include<string.h>
 #include<stdlib.h>
-#include<conio.h>
-#include<time.h>
 
 typedef struct Student {
-	char m_name[20];         //ĞÕÃû
-	char m_number[20];       //Ñ§ºÅ
-	int m_ChineseScore;      //ÓïÎÄ³É¼¨
-	int m_MathScore;         //ÊıÑ§³É¼¨
-	int m_EnglishScore;      //Ó¢Óï³É¼¨
-	int m_programScore;      //³ÌĞòÉè¼Æ³É¼¨
-	int m_totalScore;        //×Ü·Ö
-	bool m_qualifiedScore;   //·ÖÊıºÏ¸ñ(²»¼°¸ñ¿ÆÄ¿³¬¹ı2¿Æ¼´Îª²»ºÏ¸ñ)
+	char m_name[20];         //å§“å
+	char m_number[20];       //å­¦å·
+	int m_ChineseScore;      //è¯­æ–‡æˆç»©
+	int m_MathScore;         //æ•°å­¦æˆç»©
+	int m_EnglishScore;      //è‹±è¯­æˆç»©
+	int m_programScore;      //ç¨‹åºè®¾è®¡æˆç»©
+	int m_totalScore;        //æ€»åˆ†
+	bool m_qualifiedScore;   //åˆ†æ•°åˆæ ¼(ä¸åŠæ ¼ç§‘ç›®è¶…è¿‡2ç§‘å³ä¸ºä¸åˆæ ¼)
 
-	struct Student* next;    //Ö¸ÕëÓò
+	struct Student* next;    //æŒ‡é’ˆåŸŸ
 }S;
 
-//Ö÷Ò³
+//ä¸»é¡µ
 void home_page()
 {
 
 	system("cls");
 
 	printf("|---------------------------|\n");
-	printf("|    DLNU³É¼¨¹ÜÀíÏµÍ³1.0    |\n");
+	printf("|    DLNUæˆç»©ç®¡ç†ç³»ç»Ÿ1.0    |\n");
 	printf("|---------------------------|\n");
-	printf("|       1.Â¼ÈëĞÅÏ¢          |\n");
-	printf("|       2.ĞŞ¸ÄĞÅÏ¢          |\n");
-	printf("|       3.É¾³ıÑ§Éú          |\n");
-	printf("|       4.²éÑ¯¸öÈËĞÅÏ¢      |\n");
-	printf("|       5.²éÑ¯¸÷¿ÆÅÅÃû      |\n");
-	printf("|       6.ÏÔÊ¾ËùÓĞĞÅÏ¢      |\n");
-	printf("|       7.´æµµ              |\n");
-	printf("|       8.ÍË³ö              |\n");
+	printf("|       1.å½•å…¥ä¿¡æ¯          |\n");
+	printf("|       2.ä¿®æ”¹ä¿¡æ¯          |\n");
+	printf("|       3.åˆ é™¤å­¦ç”Ÿ          |\n");
+	printf("|       4.æŸ¥è¯¢ä¸ªäººä¿¡æ¯      |\n");
+	printf("|       5.æŸ¥è¯¢å„ç§‘æ’å      |\n");
+	printf("|       6.æ˜¾ç¤ºæ‰€æœ‰ä¿¡æ¯      |\n");
+	printf("|       7.å­˜æ¡£              |\n");
+	printf("|       8.é€€å‡º              |\n");
 	printf(" ---------------------------\n");
 	printf(" -----------------------------------\n");
-	printf("|   ×¢Òâ:   1.³É¼¨¾ùÎªÕûÊı          |\n");
-	printf("|          2.Îª·ÀÖ¹Êı¾İ¶ªÊ§,        |\n");
-	printf("|  Ã¿´ÎÍË³öÏµÍ³Ç°ÇëÎñ±Ø´æµµ!        |\n");
+	printf("|   æ³¨æ„:   1.æˆç»©å‡ä¸ºæ•´æ•°          |\n");
+	printf("|          2.ä¸ºé˜²æ­¢æ•°æ®ä¸¢å¤±,        |\n");
+	printf("|  æ¯æ¬¡é€€å‡ºç³»ç»Ÿå‰è¯·åŠ¡å¿…å­˜æ¡£!        |\n");
 	printf(" -----------------------------------\n");
 }
-//1.Â¼ÈëĞÅÏ¢
+//1.å½•å…¥ä¿¡æ¯
 S* Input_new_student();
-//1...ÅĞ¶Ï·ÖÊıÊÇ·ñºÏ¸ñ
+//1...åˆ¤æ–­åˆ†æ•°æ˜¯å¦åˆæ ¼
 void Judge_score(S* student);
-//1...½ÚµãÁ¬½Ó(Î²²å)
+//1...èŠ‚ç‚¹è¿æ¥(å°¾æ’)
 void Tail_add_node(S* head, S* new1);
 
-//2.ĞŞ¸ÄĞÅÏ¢[by:Ãû×Ö/Ñ§ºÅ]
+//2.ä¿®æ”¹ä¿¡æ¯[by:åå­—/å­¦å·]
 void Change_information(S* head);
-//2...ĞŞ¸ÄĞÅÏ¢Ñ¡Ïî
+//2...ä¿®æ”¹ä¿¡æ¯é€‰é¡¹
 void Change_information_selection(S* student);
-//2-3.¸Ä³É¼¨
+//2-3.æ”¹æˆç»©
 void Change_score(S* student);
 
-//3.É¾³ıÑ§Éú
+//3.åˆ é™¤å­¦ç”Ÿ
 void Delete_student(S* head);
 
-//4.²éÑ¯¸öÈËĞÅÏ¢[by:Ãû×Ö/Ñ§ºÅ]
+//4.æŸ¥è¯¢ä¸ªäººä¿¡æ¯[by:åå­—/å­¦å·]
 void Search_student(S* head);
-//4...²éÑ¯¸öÈËĞÅÏ¢Ñ¡Ïî
+//4...æŸ¥è¯¢ä¸ªäººä¿¡æ¯é€‰é¡¹
 void Search_student_option(S* head, S* student);
-//4...²éÑ¯¸öÈË·ÖÊı
+//4...æŸ¥è¯¢ä¸ªäººåˆ†æ•°
 void Search_score(S* student);
 
-//5.²éÑ¯¸÷¿ÆÅÅÃû(¾ùÎªÖ±²å·¨)
+//5.æŸ¥è¯¢å„ç§‘æ’å(å‡ä¸ºç›´æ’æ³•)
 void Rank_byScore(S* head);
-//5-1.ÓïÎÄ³É¼¨ÅÅÃû
+//5-1.è¯­æ–‡æˆç»©æ’å
 void Rank_byChinese(S* head);
-//5-2.ÊıÑ§³É¼¨ÅÅÃû
+//5-2.æ•°å­¦æˆç»©æ’å
 void Rank_byMath(S* head);
-//5-3.Ó¢Óï³É¼¨ÅÅÃû
+//5-3.è‹±è¯­æˆç»©æ’å
 void Rank_byEnglish(S* head);
-//5-4.³ÌĞò³É¼¨ÅÅÃû
+//5-4.ç¨‹åºæˆç»©æ’å
 void Rank_byProgram(S* head);
-//5-5.×Ü·ÖÅÅÃû
+//5-5.æ€»åˆ†æ’å
 void Rank_byTotalScore(S* head);
 
-//6.ÏÔÊ¾ËùÓĞĞÅÏ¢(²»ºÏ¸ñÑ§ÉúorÈ«ÌåÑ§Éú)
+//6.æ˜¾ç¤ºæ‰€æœ‰ä¿¡æ¯(ä¸åˆæ ¼å­¦ç”Ÿorå…¨ä½“å­¦ç”Ÿ)
 void Show_all(S* head);
-//6-1.ËùÓĞ²»ºÏ¸ñµÄÑ§Éú
+//6-1.æ‰€æœ‰ä¸åˆæ ¼çš„å­¦ç”Ÿ
 void Show_all_unqualified_student(S* head);
-//6-2.È«ÌåÑ§Éú
+//6-2.å…¨ä½“å­¦ç”Ÿ
 void Show_all_student(S* head);
 
-//¼ÓÔØÊı¾İ
+//åŠ è½½æ•°æ®
 void Load_data(S* head);
-//7.Êı¾İ´æµµ
+//7.æ•°æ®å­˜æ¡£
 void Save_data(S* head);
 
 int main()
@@ -113,23 +111,23 @@ int main()
 		}
 		switch (select)
 		{
-		case 1://Â¼ÈëĞÅÏ¢
-			printf("ÇëÊäÈëÄã±¾´ÎÏëÂ¼Èë³É¼¨µÄÈËÊı:\n");
+		case 1://å½•å…¥ä¿¡æ¯
+			printf("è¯·è¾“å…¥ä½ æœ¬æ¬¡æƒ³å½•å…¥æˆç»©çš„äººæ•°:\n");
 			scanf("%d", &N);
 			for (int i = 0; i < N; i++)
 			{
 				system("cls");
 				Tail_add_node(head, Input_new_student());
-				printf("Â¼Èë³É¹¦!\n");
+				printf("å½•å…¥æˆåŠŸ!\n");
 				getchar();
 			}
 			break;
-		case 2://ĞŞ¸ÄĞÅÏ¢
+		case 2://ä¿®æ”¹ä¿¡æ¯
 			Change_information(head);
 			getchar();
 			break;
-		case 3://É¾³ıÑ§Éú
-			printf("ÄãÏëÉ¾³ı¼¸¸öÑ§Éú:");
+		case 3://åˆ é™¤å­¦ç”Ÿ
+			printf("ä½ æƒ³åˆ é™¤å‡ ä¸ªå­¦ç”Ÿ:");
 			int deleteNumber;
 			scanf("%d", &deleteNumber);
 			for (int i = 0; i < deleteNumber; i++)
@@ -138,19 +136,19 @@ int main()
 			}
 			getchar();
 			break;
-		case 4://²éÑ¯¸öÈËĞÅÏ¢
+		case 4://æŸ¥è¯¢ä¸ªäººä¿¡æ¯
 			Search_student(head);
 			getchar();
 			break;
-		case 5://²éÑ¯¸÷¿ÆÅÅÃû
+		case 5://æŸ¥è¯¢å„ç§‘æ’å
 			Rank_byScore(head);
 			getchar();
 			break;
-		case 6://ÏÔÊ¾ËùÓĞĞÅÏ¢
+		case 6://æ˜¾ç¤ºæ‰€æœ‰ä¿¡æ¯
 			Show_all(head);
 			getchar();
 			break;
-		case 7://´æµµ
+		case 7://å­˜æ¡£
 			Save_data(head);
 			break;
 		default:
@@ -163,23 +161,23 @@ int main()
 }
 
 
-//1.Â¼ÈëĞÅÏ¢
+//1.å½•å…¥ä¿¡æ¯
 S* Input_new_student()
 {
 	S* newStudent = (S*)malloc(sizeof(S));
 	memset(newStudent, 0, sizeof(S));
 	newStudent->next = NULL;
-	printf("ĞÕÃû:");
+	printf("å§“å:");
 	scanf("%s", newStudent->m_name);
-	printf("Ñ§ºÅ:");
+	printf("å­¦å·:");
 	scanf("%s", newStudent->m_number);
-	printf("ÓïÎÄ³É¼¨:");
+	printf("è¯­æ–‡æˆç»©:");
 	scanf("%d", &newStudent->m_ChineseScore);
-	printf("ÊıÑ§³É¼¨:");
+	printf("æ•°å­¦æˆç»©:");
 	scanf("%d", &newStudent->m_MathScore);
-	printf("Ó¢Óï³É¼¨:");
+	printf("è‹±è¯­æˆç»©:");
 	scanf("%d", &newStudent->m_EnglishScore);
-	printf("³ÌĞò³É¼¨:");
+	printf("ç¨‹åºæˆç»©:");
 	scanf("%d", &newStudent->m_programScore);
 	newStudent->m_totalScore = newStudent->m_ChineseScore + newStudent->m_MathScore + newStudent->m_EnglishScore + newStudent->m_programScore;
 	Judge_score(newStudent);
@@ -187,7 +185,7 @@ S* Input_new_student()
 
 	return newStudent;
 }
-//1...ÅĞ¶Ï·ÖÊıÊÇ·ñºÏ¸ñ
+//1...åˆ¤æ–­åˆ†æ•°æ˜¯å¦åˆæ ¼
 void Judge_score(S* student)
 {
 	int cnt = 0;
@@ -198,7 +196,7 @@ void Judge_score(S* student)
 	else
 		student->m_qualifiedScore = true;
 }
-//1...½ÚµãÁ¬½Ó(Î²²å)
+//1...èŠ‚ç‚¹è¿æ¥(å°¾æ’)
 void Tail_add_node(S* head, S* new1)
 {
 	S* a = head;
@@ -209,18 +207,18 @@ void Tail_add_node(S* head, S* new1)
 	a->next = new1;
 }
 
-//2.ĞŞ¸ÄĞÅÏ¢(ÕÒµ½ÏàÓ¦µÄÑ§Éúby:Ãû×Ö/Ñ§ºÅ)
+//2.ä¿®æ”¹ä¿¡æ¯(æ‰¾åˆ°ç›¸åº”çš„å­¦ç”Ÿby:åå­—/å­¦å·)
 void Change_information(S* head) {
 	int select;
 	S* a = head;
-	printf("ÄãÏëÍ¨¹ıÃû×Ö/Ñ§ºÅĞŞ¸ÄÑ§ÉúĞÅÏ¢:[1--Ãû×Ö/2--Ñ§ºÅ]");
+	printf("ä½ æƒ³é€šè¿‡åå­—/å­¦å·ä¿®æ”¹å­¦ç”Ÿä¿¡æ¯:[1--åå­—/2--å­¦å·]");
 	scanf("%d", &select);
 	getchar();
 	switch (select)
 	{
-	case 1://Í¨¹ıÃû×ÖÕÒ
+	case 1://é€šè¿‡åå­—æ‰¾
 		char name[20];
-		printf("Ãû×Ö:");
+		printf("åå­—:");
 		scanf("%s", name);
 		while (NULL != a->next)
 		{
@@ -232,9 +230,9 @@ void Change_information(S* head) {
 			}
 		}
 		break;
-	case 2://Í¨¹ıÑ§ºÅÕÒ
+	case 2://é€šè¿‡å­¦å·æ‰¾
 		char number[20];
-		printf("Ñ§ºÅ:");
+		printf("å­¦å·:");
 		scanf("%s", number);
 		while (NULL != a->next)
 		{
@@ -250,17 +248,17 @@ void Change_information(S* head) {
 	default:
 		break;
 	}
-	printf("Î´ÕÒµ½¸ÃÑ§Éú,ĞŞ¸Ä²Ù×÷ÎŞĞ§\n");
+	printf("æœªæ‰¾åˆ°è¯¥å­¦ç”Ÿ,ä¿®æ”¹æ“ä½œæ— æ•ˆ\n");
 	getchar();
 }
-//2...ĞŞ¸ÄĞÅÏ¢Ñ¡Ïî
+//2...ä¿®æ”¹ä¿¡æ¯é€‰é¡¹
 void Change_information_selection(S* student)
 {
-	printf("ÄãÏëĞŞ¸Ä¸ÃÍ¬Ñ§µÄÄÄÒ»ÏîĞÅÏ¢:\n");
+	printf("ä½ æƒ³ä¿®æ”¹è¯¥åŒå­¦çš„å“ªä¸€é¡¹ä¿¡æ¯:\n");
 	printf(" __________\n");
-	printf("|1.Ãû×Ö    |\n");
-	printf("|2.Ñ§ºÅ    |\n");
-	printf("|3.³É¼¨    |\n");
+	printf("|1.åå­—    |\n");
+	printf("|2.å­¦å·    |\n");
+	printf("|3.æˆç»©    |\n");
 	printf("|__________|\n");
 
 	int select;
@@ -268,14 +266,14 @@ void Change_information_selection(S* student)
 	switch (select)
 	{
 	case 1:
-		printf("Ô­Ãû×Ö%s,¸ÄÎª:", student->m_name);
+		printf("åŸåå­—%s,æ”¹ä¸º:", student->m_name);
 		char newName[20];
 		scanf("%s", newName);
 		strcpy(student->m_name, newName);
 		getchar();
 		break;
 	case 2:
-		printf("Ô­Ñ§ºÅ%s,¸ÄÎª:", student->m_number);
+		printf("åŸå­¦å·%s,æ”¹ä¸º:", student->m_number);
 		char newNumber[20];
 		scanf("%s", newNumber);
 		strcpy(student->m_number, newNumber);
@@ -287,43 +285,43 @@ void Change_information_selection(S* student)
 	default:
 		break;
 	}
-	printf("ĞŞ¸Ä³É¹¦.\n");
+	printf("ä¿®æ”¹æˆåŠŸ.\n");
 	return;
 }
-//2-3.¸Ä³É¼¨
+//2-3.æ”¹æˆç»©
 void Change_score(S* student)
 {
 	int ret;
 	printf("%s", student->m_name);
-	printf("ÓïÎÄ³É¼¨:%d ,ÊÇ·ñÒªĞŞ¸Ä?\n[0-·ñ;1-ÊÇ]", student->m_ChineseScore);
+	printf("è¯­æ–‡æˆç»©:%d ,æ˜¯å¦è¦ä¿®æ”¹?\n[0-å¦;1-æ˜¯]", student->m_ChineseScore);
 	scanf("%d", &ret);
 	while (ret)
 	{
-		printf("¸ÄÎª:");
+		printf("æ”¹ä¸º:");
 		scanf("%d", &student->m_ChineseScore);
 		ret = 0;
 	}
-	printf("ÊıÑ§³É¼¨:%d ,ÊÇ·ñÒªĞŞ¸Ä?\n[0-·ñ;1-ÊÇ]", student->m_MathScore);
+	printf("æ•°å­¦æˆç»©:%d ,æ˜¯å¦è¦ä¿®æ”¹?\n[0-å¦;1-æ˜¯]", student->m_MathScore);
 	scanf("%d", &ret);
 	while (ret)
 	{
-		printf("¸ÄÎª:");
+		printf("æ”¹ä¸º:");
 		scanf("%d", &student->m_MathScore);
 		ret = 0;
 	}
-	printf("Ó¢Óï³É¼¨:%d ,ÊÇ·ñÒªĞŞ¸Ä?\n[0-·ñ;1-ÊÇ]", student->m_EnglishScore);
+	printf("è‹±è¯­æˆç»©:%d ,æ˜¯å¦è¦ä¿®æ”¹?\n[0-å¦;1-æ˜¯]", student->m_EnglishScore);
 	scanf("%d", &ret);
 	while (ret)
 	{
-		printf("¸ÄÎª:");
+		printf("æ”¹ä¸º:");
 		scanf("%d", &student->m_EnglishScore);
 		ret = 0;
 	}
-	printf("³ÌĞò³É¼¨:%d ,ÊÇ·ñÒªĞŞ¸Ä?\n[0-·ñ;1-ÊÇ]", student->m_programScore);
+	printf("ç¨‹åºæˆç»©:%d ,æ˜¯å¦è¦ä¿®æ”¹?\n[0-å¦;1-æ˜¯]", student->m_programScore);
 	scanf("%d", &ret);
 	while (ret)
 	{
-		printf("¸ÄÎª:");
+		printf("æ”¹ä¸º:");
 		scanf("%d", &student->m_programScore);
 		ret = 0;
 	}
@@ -331,19 +329,19 @@ void Change_score(S* student)
 	return;
 }
 
-//3.É¾³ıÑ§Éú
+//3.åˆ é™¤å­¦ç”Ÿ
 void Delete_student(S* head)
 {
 	int select;
 	S* a = head;
-	S* prev = NULL;//ÉÔºó±éÀúµÄÊ±ºò,ÓÃÓÚ±£ÁôÖ¸ÕëaµÄÇ°Ò»Î»
-	printf("ÄãÏëÍ¨¹ıÃû×Ö/Ñ§ºÅÉ¾³ıÑ§Éú:[1--Ãû×Ö/2--Ñ§ºÅ]");
+	S* prev = NULL;//ç¨åéå†çš„æ—¶å€™,ç”¨äºä¿ç•™æŒ‡é’ˆaçš„å‰ä¸€ä½
+	printf("ä½ æƒ³é€šè¿‡åå­—/å­¦å·åˆ é™¤å­¦ç”Ÿ:[1--åå­—/2--å­¦å·]");
 	scanf("%d", &select);
 	switch (select)
 	{
 	case 1:
 		char name[20];
-		printf("Ãû×Ö:");
+		printf("åå­—:");
 		scanf("%s", name);
 		while (NULL != a->next)
 		{
@@ -352,7 +350,7 @@ void Delete_student(S* head)
 			if (!strcmp(name, a->m_name))
 			{
 				prev->next = a->next;
-				printf("É¾³ı³É¹¦!");
+				printf("åˆ é™¤æˆåŠŸ!");
 				getchar();
 				return;
 			}
@@ -360,7 +358,7 @@ void Delete_student(S* head)
 		break;
 	case 2:
 		char number[20];
-		printf("Ñ§ºÅ:");
+		printf("å­¦å·:");
 		scanf("%s", number);
 		while (NULL != a->next)
 		{
@@ -368,7 +366,7 @@ void Delete_student(S* head)
 			if (!strcmp(number, a->m_number))
 			{
 				prev->next = a->next;
-				printf("É¾³ı³É¹¦!");
+				printf("åˆ é™¤æˆåŠŸ!");
 				getchar();
 				return;
 			}
@@ -378,25 +376,25 @@ void Delete_student(S* head)
 	default:
 		break;
 	}
-	printf("Î´ÕÒµ½¸ÃÑ§Éú,É¾³ı²Ù×÷ÎŞĞ§\n");
+	printf("æœªæ‰¾åˆ°è¯¥å­¦ç”Ÿ,åˆ é™¤æ“ä½œæ— æ•ˆ\n");
 	getchar();
 }
 
-//4.²éÑ¯¸öÈËĞÅÏ¢[by:Ãû×Ö/Ñ§ºÅ]
+//4.æŸ¥è¯¢ä¸ªäººä¿¡æ¯[by:åå­—/å­¦å·]
 void Search_student(S* head)
 {
-	int selectWay;//²éÕÒ·½Ê½
-	int selectWhat;//²éÑ¯µÄÄÚÈİ
-	int ret = 1;//ÅĞ¶ÏÑ§ÉúÊÇ·ñ´æÔÚ
+	int selectWay;//æŸ¥æ‰¾æ–¹å¼
+	int selectWhat;//æŸ¥è¯¢çš„å†…å®¹
+	int ret = 1;//åˆ¤æ–­å­¦ç”Ÿæ˜¯å¦å­˜åœ¨
 	S* a = head;
-	printf("ÄãÏëÍ¨¹ıÃû×Ö/Ñ§ºÅ²éÕÒÑ§Éú:[1--Ãû×Ö/2--Ñ§ºÅ]");
+	printf("ä½ æƒ³é€šè¿‡åå­—/å­¦å·æŸ¥æ‰¾å­¦ç”Ÿ:[1--åå­—/2--å­¦å·]");
 	scanf("%d", &selectWay);
 	getchar();
 	switch (selectWay)
 	{
 	case 1:
 		char name[20];
-		printf("Ãû×Ö:");
+		printf("åå­—:");
 		scanf("%s", name);
 		while (NULL != a->next)
 		{
@@ -411,7 +409,7 @@ void Search_student(S* head)
 		break;
 	case 2:
 		char number[20];
-		printf("Ñ§ºÅ:");
+		printf("å­¦å·:");
 		scanf("%s", number);
 		while (NULL != a->next)
 		{
@@ -429,21 +427,21 @@ void Search_student(S* head)
 	}
 	if (ret)
 	{
-		printf("Î´ÕÒµ½¸ÃÑ§Éú\n");
+		printf("æœªæ‰¾åˆ°è¯¥å­¦ç”Ÿ\n");
 		getchar();
 	}
 
 }
-//4...²éÑ¯¸öÈËĞÅÏ¢Ñ¡Ïî
+//4...æŸ¥è¯¢ä¸ªäººä¿¡æ¯é€‰é¡¹
 void Search_student_option(S* head, S* student)
 {
 	int selectOption;
 	int select = 1;
 	while (select) {
-		printf("ÄãÏë²éÑ¯%sµÄ\n", student->m_name);
+		printf("ä½ æƒ³æŸ¥è¯¢%sçš„\n", student->m_name);
 		printf("---------------\n");
-		printf("|  1.³É¼¨      |\n");
-		printf("|  2.Ñ§ºÅ      |\n");
+		printf("|  1.æˆç»©      |\n");
+		printf("|  2.å­¦å·      |\n");
 		printf("---------------\n");
 		scanf("%d", &selectOption);
 		getchar();
@@ -453,31 +451,31 @@ void Search_student_option(S* head, S* student)
 			Search_score(student);
 			break;
 		case 2:
-			printf("%sµÄÑ§ºÅÎª%s\n", student->m_name, student->m_number);
+			printf("%sçš„å­¦å·ä¸º%s\n", student->m_name, student->m_number);
 			break;
 		default:
-			printf("´íÎó!");
+			printf("é”™è¯¯!");
 			getchar();
 			break;
 		}
-		printf("ÇëÎÊ»¹Òª¼ÌĞø²éÑ¯¸ÃÍ¬Ñ§µÄĞÅÏ¢Âğ?[1-ÊÇ  0-·ñ]\n");
+		printf("è¯·é—®è¿˜è¦ç»§ç»­æŸ¥è¯¢è¯¥åŒå­¦çš„ä¿¡æ¯å—?[1-æ˜¯  0-å¦]\n");
 		scanf("%d", &select);
 	}
 }
-//4...²éÑ¯¸öÈË·ÖÊı
+//4...æŸ¥è¯¢ä¸ªäººåˆ†æ•°
 void Search_score(S* student)
 {
 	system("cls");
-	printf("Ãû×Ö:%s\n", student->m_name);
-	printf("Ñ§ºÅ:%s\n", student->m_number);
-	printf("ÓïÎÄ:%d\n", student->m_ChineseScore);
-	printf("ÊıÑ§:%d\n", student->m_MathScore);
-	printf("Ó¢Óï:%d\n", student->m_EnglishScore);
-	printf("³ÌĞò:%d\n", student->m_programScore);
-	printf("×Ü·Ö:%d\n", student->m_totalScore);
+	printf("åå­—:%s\n", student->m_name);
+	printf("å­¦å·:%s\n", student->m_number);
+	printf("è¯­æ–‡:%d\n", student->m_ChineseScore);
+	printf("æ•°å­¦:%d\n", student->m_MathScore);
+	printf("è‹±è¯­:%d\n", student->m_EnglishScore);
+	printf("ç¨‹åº:%d\n", student->m_programScore);
+	printf("æ€»åˆ†:%d\n", student->m_totalScore);
 }
 
-//5.²éÑ¯¸÷¿ÆÅÅÃû(¾ùÎªÖ±²å·¨)
+//5.æŸ¥è¯¢å„ç§‘æ’å(å‡ä¸ºç›´æ’æ³•)
 void Rank_byScore(S* head)
 {
 	int select_subject;
@@ -485,8 +483,8 @@ void Rank_byScore(S* head)
 
 	int ifSelect = 1;
 	while (ifSelect) {
-		printf("ÄãÏë°´ÄÄÃÅµÄ³É¼¨ÅÅÃû:\n");
-		printf("1.ÓïÎÄ 2.ÊıÑ§ 3.Ó¢Óï 4.³ÌĞò 5.×Ü·Ö 6.ÍË³ö\n");
+		printf("ä½ æƒ³æŒ‰å“ªé—¨çš„æˆç»©æ’å:\n");
+		printf("1.è¯­æ–‡ 2.æ•°å­¦ 3.è‹±è¯­ 4.ç¨‹åº 5.æ€»åˆ† 6.é€€å‡º\n");
 		scanf("%d", &select_subject);
 		getchar();
 		switch (select_subject)
@@ -509,18 +507,18 @@ void Rank_byScore(S* head)
 		default:
 			break;
 		}
-		printf("ÇëÎÊ»¹Òª²éÑ¯ÆäËû¿ÆÄ¿µÄ³É¼¨ÅÅÃûÂğ?[1-ÊÇ  0-·ñ]\n");
+		printf("è¯·é—®è¿˜è¦æŸ¥è¯¢å…¶ä»–ç§‘ç›®çš„æˆç»©æ’åå—?[1-æ˜¯  0-å¦]\n");
 		scanf("%d", &ifSelect);
 	}
 }
-//5-1.ÓïÎÄ³É¼¨ÅÅÃû
+//5-1.è¯­æ–‡æˆç»©æ’å
 void Rank_byChinese(S* head)
 {
 	S* p = head->next->next;
 	S* q = NULL;
 	S* pre = NULL;
 	head->next->next = NULL;
-	//Ö±²å·¨ÅÅĞò
+	//ç›´æ’æ³•æ’åº
 	while (p)
 	{
 		q = p->next;
@@ -533,11 +531,11 @@ void Rank_byChinese(S* head)
 		pre->next = p;
 		p = q;
 	}
-	//±éÀú
+	//éå†
 	S* a = head;
 	int chineseRank = 1;
 	printf("----------------------------------------------------\n");
-	printf("    Ñ§ºÅ    |    ĞÕÃû    |  ÓïÎÄ³É¼¨  |  ÓïÎÄÃû´Î  |\n");
+	printf("    å­¦å·    |    å§“å    |  è¯­æ–‡æˆç»©  |  è¯­æ–‡åæ¬¡  |\n");
 	printf("------------+------------+------------+-------------\n");
 	while (NULL != a->next)
 	{
@@ -549,14 +547,14 @@ void Rank_byChinese(S* head)
 	printf("----------------------------------------------------\n");
 	getchar();
 }
-//5-2.ÊıÑ§³É¼¨ÅÅÃû
+//5-2.æ•°å­¦æˆç»©æ’å
 void Rank_byMath(S* head)
 {
 	S* p = head->next->next;
 	S* q = NULL;
 	S* pre = NULL;
 	head->next->next = NULL;
-	//Ö±²å·¨ÅÅĞò
+	//ç›´æ’æ³•æ’åº
 	while (p)
 	{
 		q = p->next;
@@ -569,11 +567,11 @@ void Rank_byMath(S* head)
 		pre->next = p;
 		p = q;
 	}
-	//±éÀú
+	//éå†
 	S* a = head;
 	int mathRank = 1;
 	printf("----------------------------------------------------\n");
-	printf("    Ñ§ºÅ    |    ĞÕÃû    |  ÊıÑ§³É¼¨  |  ÊıÑ§Ãû´Î  |\n");
+	printf("    å­¦å·    |    å§“å    |  æ•°å­¦æˆç»©  |  æ•°å­¦åæ¬¡  |\n");
 	printf("------------+------------+------------+-------------\n");
 	while (NULL != a->next)
 	{
@@ -585,14 +583,14 @@ void Rank_byMath(S* head)
 	printf("----------------------------------------------------\n");
 	getchar();
 }
-//5-3.Ó¢Óï³É¼¨ÅÅÃû
+//5-3.è‹±è¯­æˆç»©æ’å
 void Rank_byEnglish(S* head)
 {
 	S* p = head->next->next;
 	S* q = NULL;
 	S* pre = NULL;
 	head->next->next = NULL;
-	//Ö±²å·¨ÅÅĞò
+	//ç›´æ’æ³•æ’åº
 	while (p)
 	{
 		q = p->next;
@@ -605,11 +603,11 @@ void Rank_byEnglish(S* head)
 		pre->next = p;
 		p = q;
 	}
-	//±éÀú
+	//éå†
 	S* a = head;
 	int englishRank = 1;
 	printf("----------------------------------------------------\n");
-	printf("    Ñ§ºÅ    |    ĞÕÃû    |  Ó¢Óï³É¼¨  |  Ó¢ÓïÃû´Î  |\n");
+	printf("    å­¦å·    |    å§“å    |  è‹±è¯­æˆç»©  |  è‹±è¯­åæ¬¡  |\n");
 	printf("------------+------------+------------+-------------\n");
 	while (NULL != a->next)
 	{
@@ -621,14 +619,14 @@ void Rank_byEnglish(S* head)
 	printf("----------------------------------------------------\n");
 	getchar();
 }
-//5-4.³ÌĞò³É¼¨ÅÅÃû
+//5-4.ç¨‹åºæˆç»©æ’å
 void Rank_byProgram(S* head)
 {
 	S* p = head->next->next;
 	S* q = NULL;
 	S* pre = NULL;
 	head->next->next = NULL;
-	//Ö±²å·¨ÅÅĞò
+	//ç›´æ’æ³•æ’åº
 	while (p)
 	{
 		q = p->next;
@@ -641,11 +639,11 @@ void Rank_byProgram(S* head)
 		pre->next = p;
 		p = q;
 	}
-	//±éÀú
+	//éå†
 	S* a = head;
 	int programRank = 1;
 	printf("----------------------------------------------------\n");
-	printf("    Ñ§ºÅ    |    ĞÕÃû    |  Ó¢Óï³É¼¨  |  Ó¢ÓïÃû´Î  |\n");
+	printf("    å­¦å·    |    å§“å    |  è‹±è¯­æˆç»©  |  è‹±è¯­åæ¬¡  |\n");
 	printf("------------+------------+------------+-------------\n");
 	while (NULL != a->next)
 	{
@@ -657,14 +655,14 @@ void Rank_byProgram(S* head)
 	printf("----------------------------------------------------\n");
 	getchar();
 }
-//5-5.×Ü·ÖÅÅÃû
+//5-5.æ€»åˆ†æ’å
 void Rank_byTotalScore(S* head)
 {
 	S* p = head->next->next;
 	S* q = NULL;
 	S* pre = NULL;
 	head->next->next = NULL;
-	//Ö±²å·¨ÅÅĞò
+	//ç›´æ’æ³•æ’åº
 	while (p)
 	{
 		q = p->next;
@@ -677,11 +675,11 @@ void Rank_byTotalScore(S* head)
 		pre->next = p;
 		p = q;
 	}
-	//±éÀú
+	//éå†
 	S* a = head;
 	int totalRank = 1;
 	printf("----------------------------------------------------\n");
-	printf("    Ñ§ºÅ    |    ĞÕÃû    |  Ó¢Óï³É¼¨  |  Ó¢ÓïÃû´Î  |\n");
+	printf("    å­¦å·    |    å§“å    |  è‹±è¯­æˆç»©  |  è‹±è¯­åæ¬¡  |\n");
 	printf("------------+------------+------------+-------------\n");
 	while (NULL != a->next)
 	{
@@ -694,13 +692,13 @@ void Rank_byTotalScore(S* head)
 	getchar();
 }
 
-//6.ÏÔÊ¾ËùÓĞĞÅÏ¢(²»ºÏ¸ñÑ§ÉúorÈ«ÌåÑ§Éú)
+//6.æ˜¾ç¤ºæ‰€æœ‰ä¿¡æ¯(ä¸åˆæ ¼å­¦ç”Ÿorå…¨ä½“å­¦ç”Ÿ)
 void Show_all(S* head)
 {
 	printf(" _______________________________________\n");
-	printf("| 1.ËùÓĞ²»ºÏ¸ñµÄÑ§Éú(²»¼°¸ñ¿ÆÄ¿³¬¹ı2¿Æ)\t|\n");
-	printf("| 2.È«ÌåÑ§Éú\t\t\t\t|\n");
-	printf("| 3.·µ»Ø\t\t\t\t|\n");
+	printf("| 1.æ‰€æœ‰ä¸åˆæ ¼çš„å­¦ç”Ÿ(ä¸åŠæ ¼ç§‘ç›®è¶…è¿‡2ç§‘)\t|\n");
+	printf("| 2.å…¨ä½“å­¦ç”Ÿ\t\t\t\t|\n");
+	printf("| 3.è¿”å›\t\t\t\t|\n");
 	printf(" ---------------------------------------\n");
 
 	int select;
@@ -718,13 +716,13 @@ void Show_all(S* head)
 		break;
 	}
 }
-//6-1.ËùÓĞ²»ºÏ¸ñµÄÑ§Éú
+//6-1.æ‰€æœ‰ä¸åˆæ ¼çš„å­¦ç”Ÿ
 void Show_all_unqualified_student(S* head)
 {
 	system("cls");
 	S* a = head;
 	printf("--------------------------------------------------------------------------------------------\n");
-	printf("    Ñ§ºÅ    |    ĞÕÃû    |    ÓïÎÄ    |    ÊıÑ§    |    Ó¢Óï    |    ³ÌĞò    |    ×Ü³É¼¨    |\n");
+	printf("    å­¦å·    |    å§“å    |    è¯­æ–‡    |    æ•°å­¦    |    è‹±è¯­    |    ç¨‹åº    |    æ€»æˆç»©    |\n");
 	printf("------------+------------+------------+------------+------------+------------+--------------\n");
 	while (NULL != a->next)
 	{
@@ -738,13 +736,13 @@ void Show_all_unqualified_student(S* head)
 	printf("--------------------------------------------------------------------------------------------\n");
 	getchar();
 }
-//6-2.È«ÌåÑ§Éú
+//6-2.å…¨ä½“å­¦ç”Ÿ
 void Show_all_student(S* head)
 {
 	system("cls");
 	S* a = head;
 	printf("--------------------------------------------------------------------------------------------\n");
-	printf("    Ñ§ºÅ    |    ĞÕÃû    |    ÓïÎÄ    |    ÊıÑ§    |    Ó¢Óï    |    ³ÌĞò    |    ×Ü³É¼¨    |\n");
+	printf("    å­¦å·    |    å§“å    |    è¯­æ–‡    |    æ•°å­¦    |    è‹±è¯­    |    ç¨‹åº    |    æ€»æˆç»©    |\n");
 	printf("------------+------------+------------+------------+------------+------------+--------------\n");
 	while (NULL != a->next)
 	{
@@ -756,7 +754,7 @@ void Show_all_student(S* head)
 	getchar();
 }
 
-//¼ÓÔØÊı¾İ
+//åŠ è½½æ•°æ®
 void Load_data(S* head)
 {
 	FILE* fp = fopen("student.txt", "r");
@@ -778,19 +776,19 @@ void Load_data(S* head)
 		memset(newStudent, 0, sizeof(newStudent));
 	}
 	free(newStudent);
-	printf("¼ÓÔØÍê±Ï!");
+	printf("åŠ è½½å®Œæ¯•!");
 	getchar();
 
 	fclose(fp);
 }
-//7.Êı¾İ´æµµ
+//7.æ•°æ®å­˜æ¡£
 void Save_data(S* head)
 {
 	FILE* fp;
 	S* a = head;
 	if ((fp = fopen("student.txt", "wb+")) == NULL)
 	{
-		printf("´æµµÊ§°Ü£¡");
+		printf("å­˜æ¡£å¤±è´¥ï¼");
 	}
 	else
 	{
@@ -801,7 +799,7 @@ void Save_data(S* head)
 		}
 	}
 
-	printf("´æµµ³É¹¦");
+	printf("å­˜æ¡£æˆåŠŸ");
 	getchar();
 	getchar();
 	fclose(fp);
