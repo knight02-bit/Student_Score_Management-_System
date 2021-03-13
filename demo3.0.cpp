@@ -786,8 +786,7 @@ void Load_data(S* head)
 		if (fscanf(fp, "%s\t%s\t%d\t%d\t%d\t%d\t%d\n", \
 			newStudent->m_name, newStudent->m_number, &newStudent->m_ChineseScore, \
 			& newStudent->m_MathScore, &newStudent->m_EnglishScore, \
-			& newStudent->m_programScore, &newStudent->m_totalScore, \
-			& newStudent->m_totalScore) == EOF)
+			& newStudent->m_programScore, &newStudent->m_totalScore) == EOF)
 		{
 
 			free(newStudent);
@@ -818,7 +817,7 @@ void Save_data(S* head)
 		while (NULL != a->next)
 		{
 			a = a->next;
-			fprintf(fp, "%s\t%s\t%d\t%d\t%d\t%d\t%d\n", a->m_name, a->m_number, a->m_ChineseScore, a->m_MathScore, a->m_EnglishScore, a->m_programScore, a->m_totalScore, a->m_totalScore);
+			fprintf(fp, "%s\t%s\t%d\t%d\t%d\t%d\t%d\n", a->m_name, a->m_number, a->m_ChineseScore, a->m_MathScore, a->m_EnglishScore, a->m_programScore, a->m_totalScore);
 		}
 	}
 
