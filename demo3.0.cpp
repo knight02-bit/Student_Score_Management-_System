@@ -24,7 +24,7 @@ void home_page()
 	system("cls");
 
 	printf("|---------------------------|\n");
-	printf("|    DLNU成绩管理系统2.0    |\n");
+	printf("|    DLNU成绩管理系统3.0    |\n");
 	printf("|---------------------------|\n");
 	printf("|       1.录入信息          |\n");
 	printf("|       2.修改信息          |\n");
