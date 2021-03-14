@@ -1,4 +1,4 @@
-//4.0°æ±¾ĞÂÔö¼ÓÁË°à¼¶ÊôĞÔ¼°Ïà¹Ø²Ù×÷ 
+//4.0ç‰ˆæœ¬æ–°å¢åŠ äº†ç­çº§å±æ€§åŠç›¸å…³æ“ä½œ 
 
 #define _CRT_SECURE_NO_WARNINGS
 #include<stdio.h>
@@ -7,86 +7,90 @@
 #include <windows.h>
 
 typedef struct Student {
-	char m_name[20];         //ĞÕÃû
-	char m_number[20];       //Ñ§ºÅ
-	int m_class;             //°à¼¶
-	int m_ChineseScore;      //ÓïÎÄ³É¼¨
-	int m_MathScore;         //ÊıÑ§³É¼¨
-	int m_EnglishScore;      //Ó¢Óï³É¼¨
-	int m_programScore;      //³ÌĞòÉè¼Æ³É¼¨
-	int m_totalScore;        //×Ü·Ö
-	int m_rankScore;         //°´ÖÖÀàÅÅÃûÊ±µÄÖĞ¼ä±äÁ¿ 
-	bool m_qualifiedScore;   //·ÖÊıºÏ¸ñ(²»¼°¸ñ¿ÆÄ¿³¬¹ı2¿Æ¼´Îª²»ºÏ¸ñ)
+	char m_name[20];         //å§“å
+	char m_number[20];       //å­¦å·
+	int m_class;             //ç­çº§
+	int m_ChineseScore;      //è¯­æ–‡æˆç»©
+	int m_MathScore;         //æ•°å­¦æˆç»©
+	int m_EnglishScore;      //è‹±è¯­æˆç»©
+	int m_programScore;      //ç¨‹åºè®¾è®¡æˆç»©
+	int m_totalScore;        //æ€»åˆ†
+	int m_rankScore;         //æŒ‰ç§ç±»æ’åæ—¶çš„ä¸­é—´å˜é‡ 
+	bool m_qualifiedScore;   //åˆ†æ•°åˆæ ¼(ä¸åŠæ ¼ç§‘ç›®è¶…è¿‡2ç§‘å³ä¸ºä¸åˆæ ¼)
 
-	struct Student* next;    //Ö¸ÕëÓò
+	struct Student* next;    //æŒ‡é’ˆåŸŸ
 }Stu;
 
-//Ö÷Ò³
+//ä¸»é¡µ
 void home_page()
 {
 	system("cls");
 
 	printf("     ___________________________\n");
 	printf("    |                           |\n");
-	printf("    |      SE³É¼¨¹ÜÀíÏµÍ³4.0    |\n");
+	printf("    |      SEæˆç»©ç®¡ç†ç³»ç»Ÿ4.0    |\n");
 	printf("    |___________________________|\n");
-	printf("    |       1.Â¼ÈëĞÅÏ¢          |\n");
-	printf("    |       2.ĞŞ¸ÄĞÅÏ¢          |\n");
-	printf("    |       3.É¾³ıÑ§Éú          |\n");
-	printf("    |       4.²éÑ¯¸öÈËĞÅÏ¢      |\n");
-	printf("    |       5.²éÑ¯ÅÅÃû          |\n");
-	printf("    |       6.ÏÔÊ¾ËùÓĞĞÅÏ¢      |\n");
-	printf("    |       7.ÍË³ö              |\n");
+	printf("    |       1.å½•å…¥ä¿¡æ¯          |\n");
+	printf("    |       2.ä¿®æ”¹ä¿¡æ¯          |\n");
+	printf("    |       3.åˆ é™¤å­¦ç”Ÿ          |\n");
+	printf("    |       4.æŸ¥è¯¢ä¸ªäººä¿¡æ¯      |\n");
+	printf("    |       5.æŸ¥è¯¢æ’å          |\n");
+	printf("    |       6.æ˜¾ç¤ºæ‰€æœ‰ä¿¡æ¯      |\n");
+	printf("    |       7.é€€å‡º              |\n");
 	printf("    |___________________________|\n");
-	printf(" ------Made By:Èí¼ş202°àÙ¡Ë§½Ü------\n");
+	printf(" ------Made By:è½¯ä»¶202ç­ä½Ÿå¸…æ°------\n");
 	printf("|                                   |\n");
-	printf("|   ×¢Òâ:  1.³É¼¨¾ùÎªÕûÊı           |\n");
-	printf("|         2.Ñ§ºÅ²»³¬¹ıÊ®Î»          |\n");
-	printf("|  3.·ÇÕı³£ÍË³ö»áÔì³ÉĞÂÊı¾İ´æµµÊ§°Ü |\n");
+	printf("|   æ³¨æ„:                           |\n");
+	printf("|  1.æˆç»©å‡ä¸ºæ•´æ•°                   |\n");
+	printf("|  2.å­¦å·ä¸è¶…è¿‡åä½                 |\n");
+	printf("|  3.è‹¥æœ‰é‡å¤åå­—,                  |\n");
+	printf("|    è¯·åœ¨å…¶ååŠ ä¸Š\"(ç­çº§)\",          |\n");
+	printf("|    ä¾‹å¦‚:å¼ ä¸‰(2),å¼ ä¸‰(3)...        |\n");
+	printf("|  4.éæ­£å¸¸é€€å‡ºä¼šé€ æˆæ–°æ•°æ®å­˜æ¡£å¤±è´¥ |\n");
 	printf("|___________________________________|\n");
 }
-//1.Â¼ÈëĞÅÏ¢
+//1.å½•å…¥ä¿¡æ¯
 Stu* Input_new_student();
-//1...ÅĞ¶Ï·ÖÊıÊÇ·ñºÏ¸ñ
+//1...åˆ¤æ–­åˆ†æ•°æ˜¯å¦åˆæ ¼
 void Judge_score(Stu* student);
-//1...½ÚµãÁ¬½Ó(Î²²å)
-void Tail_add_node(Stu* pHead, Stu* new1);//ÎªºÎÒª´«Í·Ö¸Õë 
+//1...èŠ‚ç‚¹è¿æ¥(å°¾æ’)
+void Tail_add_node(Stu* pHead, Stu* new1);//ä¸ºä½•è¦ä¼ å¤´æŒ‡é’ˆ 
 
-//2.ĞŞ¸Ä¸öÈËĞÅÏ¢µÄ·½Ê½[Í¨¹ıÃû×Ö/Ñ§ºÅÕÒÑ§Éú]
+//2.ä¿®æ”¹ä¸ªäººä¿¡æ¯çš„æ–¹å¼[é€šè¿‡åå­—/å­¦å·æ‰¾å­¦ç”Ÿ]
 void Change_information(Stu* pHead);
-//2...ĞŞ¸ÄĞÅÏ¢Ñ¡Ïî
+//2...ä¿®æ”¹ä¿¡æ¯é€‰é¡¹
 void Change_information_selection(Stu* student);
-//2-4.¸Ä³É¼¨
+//2-4.æ”¹æˆç»©
 void Change_score(Stu* student);
 
-//3.É¾³ıÑ§Éú
+//3.åˆ é™¤å­¦ç”Ÿ
 void Delete_student(Stu* pHead);
 
-//4.²éÑ¯¸öÈËĞÅÏ¢[Í¨¹ıÃû×Ö/Ñ§ºÅÕÒÑ§Éú]
+//4.æŸ¥è¯¢ä¸ªäººä¿¡æ¯[é€šè¿‡åå­—/å­¦å·æ‰¾å­¦ç”Ÿ]
 void Search_student(Stu* pHead);
-//4.¸öÈËĞÅÏ¢
+//4.ä¸ªäººä¿¡æ¯
 void Show_studentInformation(Stu* student);
 
-//5.ÅÅÃûÖÖÀàÑ¡Ôñ[°à¼¶/È«Ïµ]
+//5.æ’åç§ç±»é€‰æ‹©[ç­çº§/å…¨ç³»]
 void Rank_kindSelect(Stu* pHead);
-//5...´´½¨ĞèÒªÅÅÃûµÄ°à¼¶
+//5...åˆ›å»ºéœ€è¦æ’åçš„ç­çº§
 Stu* Build_rankClass(Stu* pHead, int rankClass);
-//5...°´¿ÆÄ¿ÅÅÃû
+//5...æŒ‰ç§‘ç›®æ’å
 void Rank_subjectSelect(Stu* pHead);
-//5...ÅÅÃû
+//5...æ’å
 void Rank_byScore(Stu* pHead, int subject);
 
 
-//6.ÏÔÊ¾ËùÓĞĞÅÏ¢(²»ºÏ¸ñÑ§ÉúorÈ«ÌåÑ§Éú)
+//6.æ˜¾ç¤ºæ‰€æœ‰ä¿¡æ¯(ä¸åˆæ ¼å­¦ç”Ÿorå…¨ä½“å­¦ç”Ÿ)
 void Show_all(Stu* pHead);
-//6-1.ËùÓĞ²»ºÏ¸ñµÄÑ§Éú
+//6-1.æ‰€æœ‰ä¸åˆæ ¼çš„å­¦ç”Ÿ
 void Show_all_unqualified_student(Stu* pHead);
-//6-2.È«ÌåÑ§Éú
+//6-2.å…¨ä½“å­¦ç”Ÿ
 void Show_all_student(Stu* pHead);
 
-//¼ÓÔØÊı¾İ
+//åŠ è½½æ•°æ®
 void Load_data(Stu* pHead);
-//7.ÍË³öÇ°´æµµ 
+//7.é€€å‡ºå‰å­˜æ¡£ 
 void Save_data(Stu* pHead);
 
 int main()
@@ -95,7 +99,7 @@ int main()
 	memset(pHead, 0, sizeof(Stu));
 	pHead->next = NULL;
 
-	Load_data(pHead);//¼ÓÔØÊı¾İ 
+	Load_data(pHead);//åŠ è½½æ•°æ® 
 
 	int select = 0;
 	while (1)
@@ -105,44 +109,46 @@ int main()
 
 		scanf("%d", &select);
 		if (!(select >= 1 && select <= 6)) {
-			Save_data(pHead);//´æµµ 
+			Save_data(pHead);//å­˜æ¡£ 
 			break;
 		}
 		switch (select)
 		{
-		case 1://Â¼ÈëĞÅÏ¢
-			printf("ÇëÊäÈëÄã±¾´ÎÏëÂ¼Èë³É¼¨µÄÈËÊı:\n");
+		case 1://å½•å…¥ä¿¡æ¯
+			printf("è¯·è¾“å…¥ä½ æœ¬æ¬¡æƒ³å½•å…¥æˆç»©çš„äººæ•°:\n");
 			scanf("%d", &N);
 			for (int i = 0; i < N; i++)
 			{
 				Tail_add_node(pHead, Input_new_student());
-				printf("Â¼Èë³É¹¦!\n");
+				printf("å½•å…¥æˆåŠŸ!\n");
 				getchar();
 			}
 			break;
-		case 2://ĞŞ¸ÄĞÅÏ¢
+		case 2://ä¿®æ”¹ä¿¡æ¯
 			Change_information(pHead);
 			getchar();
 			break;
-		case 3://É¾³ıÑ§Éú
-			printf("ÄãÏëÉ¾³ı¼¸¸öÑ§Éú:");
+		case 3://åˆ é™¤å­¦ç”Ÿ
+			printf("ä½ æƒ³åˆ é™¤å‡ ä¸ªå­¦ç”Ÿ:");
 			int deleteNumber;
 			scanf("%d", &deleteNumber);
 			for (int i = 0; i < deleteNumber; i++)
 			{
+				system("cls");
 				Delete_student(pHead);
+				getchar();
 			}
 			getchar();
 			break;
-		case 4://²éÑ¯¸öÈËĞÅÏ¢
+		case 4://æŸ¥è¯¢ä¸ªäººä¿¡æ¯
 			Search_student(pHead);
 			getchar();
 			break;
-		case 5://²éÑ¯ÅÅÃû
+		case 5://æŸ¥è¯¢æ’å
 			Rank_kindSelect(pHead);
 			getchar();
 			break;
-		case 6://ÏÔÊ¾ËùÓĞĞÅÏ¢
+		case 6://æ˜¾ç¤ºæ‰€æœ‰ä¿¡æ¯
 			Show_all(pHead);
 			getchar();
 			break;
@@ -156,7 +162,7 @@ int main()
 }
 
 
-//1.Â¼ÈëĞÅÏ¢
+//1.å½•å…¥ä¿¡æ¯
 Stu* Input_new_student()
 {
 	system("cls");
@@ -165,32 +171,32 @@ Stu* Input_new_student()
 	memset(newStudent, 0, sizeof(Stu));
 	newStudent->next = NULL;
 
-	printf("ĞÕÃû:");
+	printf("å§“å:");
 	scanf("%s", newStudent->m_name);
-	printf("Ñ§ºÅ:");
+	printf("å­¦å·:");
 	scanf("%s", newStudent->m_number);
-	printf("°à¼¶:");
+	printf("ç­çº§:");
 	scanf("%d", &newStudent->m_class);
-	printf("ÓïÎÄ³É¼¨:");
+	printf("è¯­æ–‡æˆç»©:");
 	scanf("%d", &newStudent->m_ChineseScore);
-	printf("ÊıÑ§³É¼¨:");
+	printf("æ•°å­¦æˆç»©:");
 	scanf("%d", &newStudent->m_MathScore);
-	printf("Ó¢Óï³É¼¨:");
+	printf("è‹±è¯­æˆç»©:");
 	scanf("%d", &newStudent->m_EnglishScore);
-	printf("³ÌĞò³É¼¨:");
+	printf("ç¨‹åºæˆç»©:");
 	scanf("%d", &newStudent->m_programScore);
 	newStudent->m_totalScore = newStudent->m_ChineseScore + newStudent->m_MathScore + newStudent->m_EnglishScore + newStudent->m_programScore;
 	newStudent->m_rankScore = 0;
 
-	Judge_score(newStudent);//ÅĞ¶ÏºÏ¸ñÓë·ñ 
+	Judge_score(newStudent);//åˆ¤æ–­åˆæ ¼ä¸å¦ 
 	getchar();
 
 	return newStudent;
 }
-//1...ÅĞ¶Ï·ÖÊıÊÇ·ñºÏ¸ñ
+//1...åˆ¤æ–­åˆ†æ•°æ˜¯å¦åˆæ ¼
 void Judge_score(Stu* student)
 {
-	int cnt = 0;//²»ºÏ¸ñ¿ÆÄ¿µÄÊıÁ¿ 
+	int cnt = 0;//ä¸åˆæ ¼ç§‘ç›®çš„æ•°é‡ 
 	cnt = (student->m_ChineseScore < 60) + (student->m_MathScore < 60)\
 		+ (student->m_EnglishScore < 60) + (student->m_programScore < 60);
 	if (cnt > 2)
@@ -198,7 +204,7 @@ void Judge_score(Stu* student)
 	else
 		student->m_qualifiedScore = true;
 }
-//1...½ÚµãÁ¬½Ó(Î²²å)
+//1...èŠ‚ç‚¹è¿æ¥(å°¾æ’)
 void Tail_add_node(Stu* pHead, Stu* new1)
 {
 	Stu* pMove = pHead;
@@ -209,20 +215,20 @@ void Tail_add_node(Stu* pHead, Stu* new1)
 	pMove->next = new1;
 }
 
-//2.ĞŞ¸Ä¸öÈËĞÅÏ¢µÄ·½Ê½[Í¨¹ıÃû×Ö/Ñ§ºÅÕÒÑ§Éú]
+//2.ä¿®æ”¹ä¸ªäººä¿¡æ¯çš„æ–¹å¼[é€šè¿‡åå­—/å­¦å·æ‰¾å­¦ç”Ÿ]
 void Change_information(Stu* pHead)
 {
 	system("cls");
-	int selectWay;//²éÕÒ·½Ê½ 
+	int selectWay;//æŸ¥æ‰¾æ–¹å¼ 
 	Stu* pMove = pHead;
-	printf("ÄãÏëÍ¨¹ıÃû×Ö/Ñ§ºÅĞŞ¸ÄÑ§ÉúĞÅÏ¢:[1--Ãû×Ö/2--Ñ§ºÅ]");
+	printf("ä½ æƒ³é€šè¿‡åå­—/å­¦å·ä¿®æ”¹å­¦ç”Ÿä¿¡æ¯:[1--åå­—/2--å­¦å·]");
 	scanf("%d", &selectWay);
 	getchar();
 	switch (selectWay)
 	{
-	case 1://Í¨¹ıÃû×ÖÕÒ
+	case 1://é€šè¿‡åå­—æ‰¾
 		char name[20];
-		printf("Ãû×Ö:");
+		printf("åå­—:");
 		scanf("%s", name);
 		while (pMove->next)
 		{
@@ -234,9 +240,9 @@ void Change_information(Stu* pHead)
 			}
 		}
 		break;
-	case 2://Í¨¹ıÑ§ºÅÕÒ
+	case 2://é€šè¿‡å­¦å·æ‰¾
 		char number[20];
-		printf("Ñ§ºÅ:");
+		printf("å­¦å·:");
 		scanf("%s", number);
 		while (pMove->next)
 		{
@@ -252,19 +258,19 @@ void Change_information(Stu* pHead)
 	default:
 		break;
 	}
-	printf("Î´ÕÒµ½¸ÃÑ§Éú,ĞŞ¸Ä²Ù×÷ÎŞĞ§\n");
+	printf("æœªæ‰¾åˆ°è¯¥å­¦ç”Ÿ,ä¿®æ”¹æ“ä½œæ— æ•ˆ\n");
 	getchar();
 }
-//2...ĞŞ¸ÄĞÅÏ¢Ñ¡Ïî
+//2...ä¿®æ”¹ä¿¡æ¯é€‰é¡¹
 void Change_information_selection(Stu* student)
 {
 	system("cls");
-	printf("ÄãÏëĞŞ¸Ä%sµÄÄÄÒ»ÏîĞÅÏ¢:\n", student->m_name);
+	printf("ä½ æƒ³ä¿®æ”¹%sçš„å“ªä¸€é¡¹ä¿¡æ¯:\n", student->m_name);
 	printf(" __________\n");
-	printf("|1.Ãû×Ö    |\n");
-	printf("|2.Ñ§ºÅ    |\n");
-	printf("|3.°à¼¶    |\n");
-	printf("|4.³É¼¨    |\n");
+	printf("|1.åå­—    |\n");
+	printf("|2.å­¦å·    |\n");
+	printf("|3.ç­çº§    |\n");
+	printf("|4.æˆç»©    |\n");
 	printf("|__________|\n");
 
 	int select;
@@ -272,19 +278,19 @@ void Change_information_selection(Stu* student)
 	switch (select)
 	{
 	case 1:
-		printf("Ô­Ãû×Ö%s,¸ÄÎª:", student->m_name);
+		printf("åŸåå­—%s,æ”¹ä¸º:", student->m_name);
 		char newName[20];
 		scanf("%s", newName);
 		strcpy(student->m_name, newName);
 		break;
 	case 2:
-		printf("Ô­Ñ§ºÅ%s,¸ÄÎª:", student->m_number);
+		printf("åŸå­¦å·%s,æ”¹ä¸º:", student->m_number);
 		char newNumber[20];
 		scanf("%s", newNumber);
 		strcpy(student->m_number, newNumber);
 		break;
 	case 3:
-		printf("Ô­°à¼¶%d,¸ÄÎª:", student->m_class);
+		printf("åŸç­çº§%d,æ”¹ä¸º:", student->m_class);
 		scanf("%d", &student->m_class);
 		break;
 	case 4:
@@ -293,45 +299,45 @@ void Change_information_selection(Stu* student)
 	default:
 		break;
 	}
-	printf("ĞŞ¸Ä³É¹¦.\n");
+	printf("ä¿®æ”¹æˆåŠŸ.\n");
 	getchar();
 	return;
 }
-//2-4.¸Ä³É¼¨
+//2-4.æ”¹æˆç»©
 void Change_score(Stu* student)
 {
 	system("cls");
 	int ret;
 	printf("%s", student->m_name);
-	printf("ÓïÎÄ³É¼¨:%d ,ÊÇ·ñÒªĞŞ¸Ä?\n[0-·ñ;1-ÊÇ]", student->m_ChineseScore);
+	printf("è¯­æ–‡æˆç»©:%d ,æ˜¯å¦è¦ä¿®æ”¹?\n[0-å¦;1-æ˜¯]", student->m_ChineseScore);
 	scanf("%d", &ret);
 	while (ret)
 	{
-		printf("¸ÄÎª:");
+		printf("æ”¹ä¸º:");
 		scanf("%d", &student->m_ChineseScore);
 		ret = 0;
 	}
-	printf("ÊıÑ§³É¼¨:%d ,ÊÇ·ñÒªĞŞ¸Ä?\n[0-·ñ;1-ÊÇ]", student->m_MathScore);
+	printf("æ•°å­¦æˆç»©:%d ,æ˜¯å¦è¦ä¿®æ”¹?\n[0-å¦;1-æ˜¯]", student->m_MathScore);
 	scanf("%d", &ret);
 	while (ret)
 	{
-		printf("¸ÄÎª:");
+		printf("æ”¹ä¸º:");
 		scanf("%d", &student->m_MathScore);
 		ret = 0;
 	}
-	printf("Ó¢Óï³É¼¨:%d ,ÊÇ·ñÒªĞŞ¸Ä?\n[0-·ñ;1-ÊÇ]", student->m_EnglishScore);
+	printf("è‹±è¯­æˆç»©:%d ,æ˜¯å¦è¦ä¿®æ”¹?\n[0-å¦;1-æ˜¯]", student->m_EnglishScore);
 	scanf("%d", &ret);
 	while (ret)
 	{
-		printf("¸ÄÎª:");
+		printf("æ”¹ä¸º:");
 		scanf("%d", &student->m_EnglishScore);
 		ret = 0;
 	}
-	printf("³ÌĞò³É¼¨:%d ,ÊÇ·ñÒªĞŞ¸Ä?\n[0-·ñ;1-ÊÇ]", student->m_programScore);
+	printf("ç¨‹åºæˆç»©:%d ,æ˜¯å¦è¦ä¿®æ”¹?\n[0-å¦;1-æ˜¯]", student->m_programScore);
 	scanf("%d", &ret);
 	while (ret)
 	{
-		printf("¸ÄÎª:");
+		printf("æ”¹ä¸º:");
 		scanf("%d", &student->m_programScore);
 		ret = 0;
 	}
@@ -339,20 +345,22 @@ void Change_score(Stu* student)
 	return;
 }
 
-//3.É¾³ıÑ§Éú
+//3.åˆ é™¤å­¦ç”Ÿ
 void Delete_student(Stu* pHead)
 {
-	system("cls");
-	int selectWay;
+	int searchWay;//æŸ¥æ‰¾æ–¹å¼ 
+	
 	Stu* pMove = pHead;
-	Stu* prev = NULL;//ÉÔºó±éÀúµÄÊ±ºò,ÓÃÓÚ±£ÁôÖ¸ÕëpMoveµÄÇ°Ò»Î»
-	printf("ÄãÏëÍ¨¹ıÃû×Ö/Ñ§ºÅÉ¾³ıÑ§Éú:[1--Ãû×Ö/2--Ñ§ºÅ]");
-	scanf("%d", &selectWay);
-	switch (selectWay)
+	Stu* prev = NULL;//ç¨åéå†çš„æ—¶å€™,ç”¨äºä¿ç•™æŒ‡é’ˆpMoveçš„å‰ä¸€ä½
+	
+	printf("ä½ æƒ³é€šè¿‡åå­—/å­¦å·åˆ é™¤å­¦ç”Ÿ:[1--åå­—/2--å­¦å·]");
+	scanf("%d", &searchWay);
+	getchar(); 
+	switch (searchWay)
 	{
 	case 1:
 		char name[20];
-		printf("Ãû×Ö:");
+		printf("åå­—:");
 		scanf("%s", name);
 		while (pMove->next)
 		{
@@ -361,7 +369,7 @@ void Delete_student(Stu* pHead)
 			if (!strcmp(name, pMove->m_name))
 			{
 				prev->next = pMove->next;
-				printf("É¾³ı³É¹¦!");
+				printf("åˆ é™¤æˆåŠŸ!");
 				getchar();
 				return;
 			}
@@ -369,7 +377,7 @@ void Delete_student(Stu* pHead)
 		break;
 	case 2:
 		char number[20];
-		printf("Ñ§ºÅ:");
+		printf("å­¦å·:");
 		scanf("%s", number);
 		while (pMove->next)
 		{
@@ -377,7 +385,7 @@ void Delete_student(Stu* pHead)
 			if (!strcmp(number, pMove->m_number))
 			{
 				prev->next = pMove->next;
-				printf("É¾³ı³É¹¦!");
+				printf("åˆ é™¤æˆåŠŸ!");
 				getchar();
 				return;
 			}
@@ -388,27 +396,27 @@ void Delete_student(Stu* pHead)
 		break;
 	}
 	printf(" _____________________________\n");
-	printf("|  Î´ÕÒµ½¸ÃÑ§Éú,É¾³ı²Ù×÷ÎŞĞ§  |\n");
+	printf("|  æœªæ‰¾åˆ°è¯¥å­¦ç”Ÿ,åˆ é™¤æ“ä½œæ— æ•ˆ  |\n");
 	printf("|_____________________________|\n");
 	getchar();
 }
 
-//4.²éÑ¯¸öÈËĞÅÏ¢[Í¨¹ıÃû×Ö/Ñ§ºÅÕÒÑ§Éú]
+//4.æŸ¥è¯¢ä¸ªäººä¿¡æ¯[é€šè¿‡åå­—/å­¦å·æ‰¾å­¦ç”Ÿ]
 void Search_student(Stu* pHead)
 {
 	system("cls");
-	int selectWay;//²éÕÒ·½Ê½
-	int ret = 1;//ÅĞ¶ÏÑ§ÉúÊÇ·ñ´æÔÚ
+	int searchWay;//æŸ¥æ‰¾æ–¹å¼
+	int ret = 1;//åˆ¤æ–­å­¦ç”Ÿæ˜¯å¦å­˜åœ¨
 	Stu* pMove = pHead;
 
-	printf("ÄãÏëÍ¨¹ıÃû×Ö/Ñ§ºÅ²éÕÒÑ§Éú:[1--Ãû×Ö/2--Ñ§ºÅ]");
-	scanf("%d", &selectWay);
+	printf("ä½ æƒ³é€šè¿‡åå­—/å­¦å·æŸ¥æ‰¾å­¦ç”Ÿ:[1--åå­—/2--å­¦å·]");
+	scanf("%d", &searchWay);
 	getchar();
-	switch (selectWay)
+	switch (searchWay)
 	{
 	case 1:
 		char name[20];
-		printf("Ãû×Ö:");
+		printf("åå­—:");
 		scanf("%s", name);
 		while (pMove->next)
 		{
@@ -423,7 +431,7 @@ void Search_student(Stu* pHead)
 		break;
 	case 2:
 		char number[20];
-		printf("Ñ§ºÅ:");
+		printf("å­¦å·:");
 		scanf("%s", number);
 		while (pMove->next)
 		{
@@ -442,36 +450,36 @@ void Search_student(Stu* pHead)
 	if (ret)
 	{
 		printf(" ________________\n");
-		printf("|  Î´ÕÒµ½¸ÃÑ§Éú  |\n");
+		printf("|  æœªæ‰¾åˆ°è¯¥å­¦ç”Ÿ  |\n");
 		printf("|________________|\n");
 		getchar();
 	}
 
 }
-//4.¸öÈËĞÅÏ¢
+//4.ä¸ªäººä¿¡æ¯
 void Show_studentInformation(Stu* student)
 {
 	system("cls");
 
 	printf(" ____________________\n");
-	printf("|  Ãû×Ö:%-12s|\n", student->m_name);
-	printf("|  Ñ§ºÅ:%-12s|\n", student->m_number);
-	printf("|  °à¼¶:%-12d|\n", student->m_class);
-	printf("|  ÓïÎÄ:%-12d|\n", student->m_ChineseScore);
-	printf("|  ÊıÑ§:%-12d|\n", student->m_MathScore);
-	printf("|  Ó¢Óï:%-12d|\n", student->m_EnglishScore);
-	printf("|  ³ÌĞò:%-12d|\n", student->m_programScore);
-	printf("|  ×Ü·Ö:%-12d|\n", student->m_totalScore);
+	printf("|  åå­—:%-12s|\n", student->m_name);
+	printf("|  å­¦å·:%-12s|\n", student->m_number);
+	printf("|  ç­çº§:%-12d|\n", student->m_class);
+	printf("|  è¯­æ–‡:%-12d|\n", student->m_ChineseScore);
+	printf("|  æ•°å­¦:%-12d|\n", student->m_MathScore);
+	printf("|  è‹±è¯­:%-12d|\n", student->m_EnglishScore);
+	printf("|  ç¨‹åº:%-12d|\n", student->m_programScore);
+	printf("|  æ€»åˆ†:%-12d|\n", student->m_totalScore);
 	printf("|___________________|\n");
 	getchar();
 }
 
-//5.ÅÅÃûÖÖÀàÑ¡Ôñ[°à¼¶/È«Ïµ]
+//5.æ’åç§ç±»é€‰æ‹©[ç­çº§/å…¨ç³»]
 void Rank_kindSelect(Stu* pHead)
 {
-	int ifSelect = 1;//Ñ¡ÔñÊÇ·ñ¼ÌĞø
+	int ifSelect = 1;//é€‰æ‹©æ˜¯å¦ç»§ç»­
 	int kindSelect = 0;
-	printf("°´ÕÕ°à¼¶/È«ÏµÅÅÃû[1-°à¼¶ 2-È«Ïµ]:");
+	printf("æŒ‰ç…§ç­çº§/å…¨ç³»æ’å[1-ç­çº§ 2-å…¨ç³»]:");
 	scanf("%d", &kindSelect);
 
 	Stu* p_classHead = NULL;
@@ -479,16 +487,16 @@ void Rank_kindSelect(Stu* pHead)
 	{
 		switch (kindSelect)
 		{
-		case 1://°à¼¶ÅÅÃû
+		case 1://ç­çº§æ’å
 			int rankClass;
-			printf("ÇëÊäÈëÄãÏë²é¿´ÅÅÃûµÄ°à¼¶:");
+			printf("è¯·è¾“å…¥ä½ æƒ³æŸ¥çœ‹æ’åçš„ç­çº§:");
 			scanf("%d", &rankClass);
 
 			p_classHead = Build_rankClass(pHead, rankClass);
 			if (NULL == p_classHead)
 			{
 				printf("  ___________________________________\n");
-				printf(" |  ÏµÍ³ÄÚÔİÎ´Â¼Èë¸Ã°à¼¶Ñ§ÉúµÄĞÅÏ¢.  |\n");
+				printf(" |  ç³»ç»Ÿå†…æš‚æœªå½•å…¥è¯¥ç­çº§å­¦ç”Ÿçš„ä¿¡æ¯.  |\n");
 				printf(" |___________________________________|\n");
 				getchar();
 				break;
@@ -496,32 +504,32 @@ void Rank_kindSelect(Stu* pHead)
 			Rank_subjectSelect(p_classHead);
 			getchar();
 			break;
-		case 2://È«ÏµÅÅÃû
+		case 2://å…¨ç³»æ’å
 			Rank_subjectSelect(pHead);
 			getchar();
 			break;
 		default:
 			break;
 		}
-		printf("ÊÇ·ñ»¹Òª¼ÌĞø²é¿´ÅÅÃû?[1-ÊÇ 0-·ñ]");
+		printf("æ˜¯å¦è¿˜è¦ç»§ç»­æŸ¥çœ‹æ’å?[1-æ˜¯ 0-å¦]");
 		scanf("%d", &ifSelect);
 	}
 }
-//5...´´½¨ĞèÒªÅÅÃûµÄ°à¼¶
+//5...åˆ›å»ºéœ€è¦æ’åçš„ç­çº§
 Stu* Build_rankClass(Stu* pHead, int rankClass)
 {
-	Stu* pMoveGrade = pHead;//Ö÷Á´±íµÄÍ·Ö¸Õë 
+	Stu* pMoveGrade = pHead;//ä¸»é“¾è¡¨çš„å¤´æŒ‡é’ˆ 
 
-	Stu* classHead = (Stu*)malloc(sizeof(Stu));//¸Ã°à¼¶µÄÍ·½Úµã
+	Stu* classHead = (Stu*)malloc(sizeof(Stu));//è¯¥ç­çº§çš„å¤´èŠ‚ç‚¹
 	memset(classHead, 0, sizeof(Stu));
 	classHead->next = NULL;
-	Stu* pMoveClass = classHead;//¸Ã°à¼¶µÄÍ·Ö¸Õë 
+	Stu* pMoveClass = classHead;//è¯¥ç­çº§çš„å¤´æŒ‡é’ˆ 
 
-	int classmateNumber = 0;//¸Ã°à¼¶ÈËÊı 
+	int classmateNumber = 0;//è¯¥ç­çº§äººæ•° 
 	while (pMoveGrade->next)
 	{
 		pMoveGrade = pMoveGrade->next;
-		if (pMoveGrade->m_class == rankClass)//½«¸Ã°à¼¶µÄÑ§Éú×ÊÁÏ¸´ÖÆµ½ĞèÒª½øĞĞÅÅÃûµÄÁ´±íÖĞ
+		if (pMoveGrade->m_class == rankClass)//å°†è¯¥ç­çº§çš„å­¦ç”Ÿèµ„æ–™å¤åˆ¶åˆ°éœ€è¦è¿›è¡Œæ’åçš„é“¾è¡¨ä¸­
 		{
 			classmateNumber++;
 			Stu* newStudent = (Stu*)malloc(sizeof(Stu));
@@ -551,14 +559,14 @@ Stu* Build_rankClass(Stu* pHead, int rankClass)
 		return NULL;
 	}
 }
-//5...°´¿ÆÄ¿ÅÅÃû
+//5...æŒ‰ç§‘ç›®æ’å
 void Rank_subjectSelect(Stu* pHead)
 {
 	system("cls");
 
 	if (NULL == pHead->next || NULL == pHead->next)
 	{
-		printf("ÎŞ¸ÃÅÅÃûµÄÏà¹ØÊı¾İÂ¼Èë,ÅÅÃûÊ§°Ü.");
+		printf("æ— è¯¥æ’åçš„ç›¸å…³æ•°æ®å½•å…¥,æ’åå¤±è´¥.");
 		getchar();
 		return;
 	}
@@ -566,68 +574,68 @@ void Rank_subjectSelect(Stu* pHead)
 	int ifSelect = 1;
 	Stu* pMove = pHead;
 
-	printf("ÄãÏë°´ÄÄÃÅµÄ³É¼¨ÅÅÃû:\n");
-	printf("1.ÓïÎÄ 2.ÊıÑ§ 3.Ó¢Óï 4.³ÌĞò 5.×Ü·Ö 6.ÍË³ö\n");
+	printf("ä½ æƒ³æŒ‰å“ªé—¨çš„æˆç»©æ’å:\n");
+	printf("1.è¯­æ–‡ 2.æ•°å­¦ 3.è‹±è¯­ 4.ç¨‹åº 5.æ€»åˆ† 6.é€€å‡º\n");
 	scanf("%d", &select_subject);
 	getchar();
 	switch (select_subject)
 	{
-	case 1://°´ÓïÎÄÅÅÃû
+	case 1://æŒ‰è¯­æ–‡æ’å
 		while (pMove->next)
 		{
 			pMove = pMove->next;
 			pMove->m_rankScore = pMove->m_ChineseScore;
 		}
 		printf("------------+------------+------------+-------------------------\n");
-		printf("    Ñ§ºÅ    |    ĞÕÃû    |    °à¼¶    |  ÓïÎÄ³É¼¨  |  ÓïÎÄÃû´Î  |\n");
+		printf("    å­¦å·    |    å§“å    |    ç­çº§    |  è¯­æ–‡æˆç»©  |  è¯­æ–‡åæ¬¡  |\n");
 		printf("------------+------------+------------+------------+------------\n");
 
 		Rank_byScore(pHead, 1);
 		break;
-	case 2://°´ÊıÑ§ÅÅÃû
+	case 2://æŒ‰æ•°å­¦æ’å
 		while (pMove->next)
 		{
 			pMove = pMove->next;
 			pMove->m_rankScore = pMove->m_MathScore;
 		}
 		printf("----------------------------------------------------------------\n");
-		printf("    Ñ§ºÅ    |    ĞÕÃû    |    °à¼¶    |  ÊıÑ§³É¼¨  |  ÊıÑ§Ãû´Î  |\n");
+		printf("    å­¦å·    |    å§“å    |    ç­çº§    |  æ•°å­¦æˆç»©  |  æ•°å­¦åæ¬¡  |\n");
 		printf("------------+------------+------------+------------+------------\n");
 
 		Rank_byScore(pHead, 2);
 		break;
-	case 3://°´Ó¢ÓïÅÅÃû
+	case 3://æŒ‰è‹±è¯­æ’å
 		while (pMove->next)
 		{
 			pMove = pMove->next;
 			pMove->m_rankScore = pMove->m_EnglishScore;
 		}
 		printf("------------+------------+------------+-------------------------\n");
-		printf("    Ñ§ºÅ    |    ĞÕÃû    |    °à¼¶    |  Ó¢Óï³É¼¨  |  Ó¢ÓïÃû´Î  |\n");
+		printf("    å­¦å·    |    å§“å    |    ç­çº§    |  è‹±è¯­æˆç»©  |  è‹±è¯­åæ¬¡  |\n");
 		printf("------------+------------+------------+------------+------------\n");
 
 		Rank_byScore(pHead, 3);
 		break;
-	case 4://°´³ÌĞòÅÅÃû
+	case 4://æŒ‰ç¨‹åºæ’å
 		while (pMove->next)
 		{
 			pMove = pMove->next;
 			pMove->m_rankScore = pMove->m_programScore;
 		}
 		printf("------------+------------+------------+------------+------------\n");
-		printf("    Ñ§ºÅ    |    ĞÕÃû    |    °à¼¶    |  ³ÌĞò³É¼¨  |  ³ÌĞòÃû´Î  |\n");
+		printf("    å­¦å·    |    å§“å    |    ç­çº§    |  ç¨‹åºæˆç»©  |  ç¨‹åºåæ¬¡  |\n");
 		printf("------------+------------+------------+------------+------------\n");
 
 		Rank_byScore(pHead, 4);
 		break;
-	case 5://°´×Ü·ÖÅÅÃû
+	case 5://æŒ‰æ€»åˆ†æ’å
 		while (pMove->next)
 		{
 			pMove = pMove->next;
 			pMove->m_rankScore = pMove->m_totalScore;
 		}
 		printf("------------+------------+------------+------------+------------+------------+------------+------------+------------\n");
-		printf("    Ñ§ºÅ    |    ĞÕÃû    |    °à¼¶    |  ÓïÎÄ³É¼¨  |  ÊıÑ§³É¼¨  |  Ó¢Óï³É¼¨  |  ³ÌĞò³É¼¨  |    ×Ü·Ö    |  ×Ü·ÖÃû´Î  |\n");
+		printf("    å­¦å·    |    å§“å    |    ç­çº§    |  è¯­æ–‡æˆç»©  |  æ•°å­¦æˆç»©  |  è‹±è¯­æˆç»©  |  ç¨‹åºæˆç»©  |    æ€»åˆ†    |  æ€»åˆ†åæ¬¡  |\n");
 		printf("------------+------------+------------+------------+------------+------------+------------+------------+------------\n");
 
 		Rank_byScore(pHead, 5);
@@ -636,14 +644,14 @@ void Rank_subjectSelect(Stu* pHead)
 		break;
 	}
 }
-//5...ÅÅÃû
+//5...æ’å
 void Rank_byScore(Stu* pHead, int subject)
 {
 	Stu* p = pHead->next->next;
 	Stu* q = NULL;
 	Stu* pre = NULL;
 	pHead->next->next = NULL;
-	//Ö±²å·¨ÅÅĞò
+	//ç›´æ’æ³•æ’åº
 	while (p)
 	{
 		q = p->next;
@@ -657,7 +665,7 @@ void Rank_byScore(Stu* pHead, int subject)
 		p = q;
 	}
 
-	//±éÀú
+	//éå†
 	Stu* pMove = pHead;
 	int scoreRank = 1;
 
@@ -687,15 +695,15 @@ void Rank_byScore(Stu* pHead, int subject)
 	}
 }
 
-//6.ÏÔÊ¾ËùÓĞĞÅÏ¢(²»ºÏ¸ñÑ§ÉúorÈ«ÌåÑ§Éú)
+//6.æ˜¾ç¤ºæ‰€æœ‰ä¿¡æ¯(ä¸åˆæ ¼å­¦ç”Ÿorå…¨ä½“å­¦ç”Ÿ)
 void Show_all(Stu* pHead)
 {
 	system("cls");
 
 	printf(" _______________________________________\n");
-	printf("| 1.ËùÓĞ²»ºÏ¸ñµÄÑ§Éú(²»¼°¸ñ¿ÆÄ¿³¬¹ı2¿Æ)\t|\n");
-	printf("| 2.È«ÌåÑ§Éú\t\t\t\t|\n");
-	printf("| 3.·µ»Ø\t\t\t\t|\n");
+	printf("| 1.æ‰€æœ‰ä¸åˆæ ¼çš„å­¦ç”Ÿ(ä¸åŠæ ¼ç§‘ç›®è¶…è¿‡2ç§‘)\t|\n");
+	printf("| 2.å…¨ä½“å­¦ç”Ÿ\t\t\t\t|\n");
+	printf("| 3.è¿”å›\t\t\t\t|\n");
 	printf(" ---------------------------------------\n");
 
 	int select;
@@ -703,24 +711,24 @@ void Show_all(Stu* pHead)
 
 	switch (select)
 	{
-	case 1://²»ºÏ¸ñÑ§Éú 
+	case 1://ä¸åˆæ ¼å­¦ç”Ÿ 
 		Show_all_unqualified_student(pHead);
 		break;
-	case 2://È«ÌåÑ§Éú
+	case 2://å…¨ä½“å­¦ç”Ÿ
 		Show_all_student(pHead);
 		break;
 	default:
 		break;
 	}
 }
-//6-1.ËùÓĞ²»ºÏ¸ñµÄÑ§Éú
+//6-1.æ‰€æœ‰ä¸åˆæ ¼çš„å­¦ç”Ÿ
 void Show_all_unqualified_student(Stu* pHead)
 {
 	system("cls");
 
 	Stu* pMove = pHead;
 	printf("------------------------------------------------------------------------------------------------------------\n");
-	printf("     Ñ§ºÅ      |    ĞÕÃû    |    °à¼¶    |    ÓïÎÄ    |    ÊıÑ§    |    Ó¢Óï    |    ³ÌĞò    |    ×Ü³É¼¨    |\n");
+	printf("     å­¦å·      |    å§“å    |    ç­çº§    |    è¯­æ–‡    |    æ•°å­¦    |    è‹±è¯­    |    ç¨‹åº    |    æ€»æˆç»©    |\n");
 	printf("---------------+------------+------------+------------+------------+------------+---------------------------\n");
 	while (pMove->next)
 	{
@@ -734,14 +742,14 @@ void Show_all_unqualified_student(Stu* pHead)
 	printf("------------------------------------------------------------------------------------------------------------\n");
 	getchar();
 }
-//6-2.È«ÌåÑ§Éú
+//6-2.å…¨ä½“å­¦ç”Ÿ
 void Show_all_student(Stu* pHead)
 {
 	system("cls");
 	Stu* pMove = pHead;
 
 	printf("------------------------------------------------------------------------------------------------------------\n");
-	printf("     Ñ§ºÅ      |    ĞÕÃû    |    °à¼¶    |    ÓïÎÄ    |    ÊıÑ§    |    Ó¢Óï    |    ³ÌĞò    |    ×Ü³É¼¨    |\n");
+	printf("     å­¦å·      |    å§“å    |    ç­çº§    |    è¯­æ–‡    |    æ•°å­¦    |    è‹±è¯­    |    ç¨‹åº    |    æ€»æˆç»©    |\n");
 	printf("---------------+------------+------------+------------+------------+------------+------------+--------------\n");
 	while (pMove->next)
 	{
@@ -755,11 +763,11 @@ void Show_all_student(Stu* pHead)
 	getchar();
 }
 
-//¼ÓÔØÊı¾İ
+//åŠ è½½æ•°æ®
 void Load_data(Stu* pHead)
 {
 	int loading = 4;
-	while (loading--)//¼Ù×°ÔÚ¼ÓÔØ
+	while (loading--)//å‡è£…åœ¨åŠ è½½
 	{
 		system("cls");
 		for (int i = 0; i < loading; i++)
@@ -768,14 +776,14 @@ void Load_data(Stu* pHead)
 		}
 		Sleep(1000);
 	}
-	int number = 0;//µ±Ç°ÏµÍ³ÄÚÂ¼ÈëµÄÑ§ÉúÊıÁ¿
+	int number = 0;//å½“å‰ç³»ç»Ÿå†…å½•å…¥çš„å­¦ç”Ÿæ•°é‡
 	Stu* pMove = pHead;
 	FILE* fp = fopen("student.txt", "r");
 	if (fp == NULL)
 	{
 		printf(" _______________________________\n");
-		printf("|\tµ±Ç°ÎŞÑ§ÉúÂ¼Èë.  \t|\n");
-		printf("|\t°´»Ø³µ½øÈëÏµÍ³...\t|\n");
+		printf("|\tå½“å‰æ— å­¦ç”Ÿå½•å…¥.  \t|\n");
+		printf("|\tæŒ‰å›è½¦è¿›å…¥ç³»ç»Ÿ...\t|\n");
 		printf("|_______________________________|\n");
 		getchar();
 		return;
@@ -801,20 +809,20 @@ void Load_data(Stu* pHead)
 		pMove = pMove->next;
 	}
 	printf(" _______________________________________\n");
-	printf("|\t\t-¼ÓÔØÍê±Ï-\t\t|\n");
-	printf("|\tµ±Ç°ÏµÍ³ÄÚÒÑÂ¼Èë%3dÃûÑ§Éú\t|\n", number);
-	printf("|\t      °´»Ø³µ½øÈëÏµÍ³       \t|\n");
+	printf("|\t\t-åŠ è½½å®Œæ¯•-\t\t|\n");
+	printf("|\tå½“å‰ç³»ç»Ÿå†…å·²å½•å…¥%3dåå­¦ç”Ÿ\t|\n", number);
+	printf("|\t      æŒ‰å›è½¦è¿›å…¥ç³»ç»Ÿ       \t|\n");
 	printf("|_______________________________________|\n");
 	getchar();
 }
-//7.ÍË³öÇ°´æµµ 
+//7.é€€å‡ºå‰å­˜æ¡£ 
 void Save_data(Stu* pHead)
 {
 	FILE* fp;
 	Stu* pMove = pHead;
 	if ((fp = fopen("student.txt", "w")) == NULL)
 	{
-		printf("´æµµÊ§°Ü£¡");
+		printf("å­˜æ¡£å¤±è´¥ï¼");
 	}
 	else
 	{
@@ -828,7 +836,7 @@ void Save_data(Stu* pHead)
 		}
 	}
 
-	printf("´æµµ³É¹¦");
+	printf("å­˜æ¡£æˆåŠŸ");
 	getchar();
 	getchar();
 	fclose(fp);
