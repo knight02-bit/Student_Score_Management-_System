@@ -1,3 +1,4 @@
+//3.0版本完善了文件操作
 
 #define _CRT_SECURE_NO_WARNINGS
 #include<stdio.h>
