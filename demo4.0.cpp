@@ -22,7 +22,7 @@ typedef struct Student {
 }Stu;
 
 //主页
-void home_page()
+void Home_page()
 {
 	system("cls");
 
@@ -49,6 +49,10 @@ void home_page()
 	printf("|  4.非正常退出会造成新数据存档失败 |\n");
 	printf("|___________________________________|\n");
 }
+
+//选择功能 
+void Select_fuction(Stu* pHead);
+
 //1.录入信息
 Stu* Input_new_student();
 //1...判断分数是否合格
@@ -56,8 +60,8 @@ void Judge_score(Stu* student);
 //1...节点连接(尾插)
 void Tail_add_node(Stu* pHead, Stu* new1);//为何要传头指针 
 
-//2.修改个人信息的方式[通过名字/学号找学生]
-void Change_information(Stu* pHead);
+//2.找到要修改的学生[通过名字/学号找学生]
+void Search_student_toChange(Stu* pHead);
 //2...修改信息选项
 void Change_information_selection(Stu* student);
 //2-4.改成绩
@@ -82,7 +86,7 @@ void Rank_byScore(Stu* pHead, int subject);
 
 
 //6.显示所有信息(不合格学生or全体学生)
-void Show_all(Stu* pHead);
+void Show_all_selection(Stu* pHead);
 //6-1.所有不合格的学生
 void Show_all_unqualified_student(Stu* pHead);
 //6-2.全体学生
@@ -100,17 +104,27 @@ int main()
 	pHead->next = NULL;
 
 	Load_data(pHead);//加载数据 
+	Select_fuction(pHead);
 
+	free(pHead);
+	return 0;
+}
+
+
+//选择功能 
+void Select_fuction(Stu* pHead)
+{
 	int select = 0;
 	while (1)
 	{
 		int N = 0;
-		home_page();
+		Home_page();
 
 		scanf("%d", &select);
-		if (!(select >= 1 && select <= 6)) {
+		if (select > 6)
+		{
 			Save_data(pHead);//存档 
-			break;
+			exit(0);
 		}
 		switch (select)
 		{
@@ -125,7 +139,7 @@ int main()
 			}
 			break;
 		case 2://修改信息
-			Change_information(pHead);
+			Search_student_toChange(pHead);
 			getchar();
 			break;
 		case 3://删除学生
@@ -149,19 +163,15 @@ int main()
 			getchar();
 			break;
 		case 6://显示所有信息
-			Show_all(pHead);
+			Show_all_selection(pHead);
 			getchar();
 			break;
 		default:
+			Save_data(pHead);//存档 
 			break;
 		}
 	}
-
-	free(pHead);
-	return 0;
 }
-
-
 //1.录入信息
 Stu* Input_new_student()
 {
@@ -199,7 +209,7 @@ void Judge_score(Stu* student)
 	int cnt = 0;//不合格科目的数量 
 	cnt = (student->m_ChineseScore < 60) + (student->m_MathScore < 60)\
 		+ (student->m_EnglishScore < 60) + (student->m_programScore < 60);
-	if (cnt > 2)
+	if (cnt >= 2)
 		student->m_qualifiedScore = false;
 	else
 		student->m_qualifiedScore = true;
@@ -215,8 +225,8 @@ void Tail_add_node(Stu* pHead, Stu* new1)
 	pMove->next = new1;
 }
 
-//2.修改个人信息的方式[通过名字/学号找学生]
-void Change_information(Stu* pHead)
+//2.找到要删除的学生[通过名字/学号找学生]
+void Search_student_toChange(Stu* pHead)
 {
 	system("cls");
 	int selectWay;//查找方式 
@@ -342,6 +352,7 @@ void Change_score(Stu* student)
 		ret = 0;
 	}
 	student->m_totalScore = student->m_ChineseScore + student->m_MathScore + student->m_EnglishScore + student->m_programScore;
+	Judge_score(student);
 	return;
 }
 
@@ -349,13 +360,13 @@ void Change_score(Stu* student)
 void Delete_student(Stu* pHead)
 {
 	int searchWay;//查找方式 
-	
+
 	Stu* pMove = pHead;
 	Stu* prev = NULL;//稍后遍历的时候,用于保留指针pMove的前一位
-	
+
 	printf("你想通过名字/学号删除学生:[1--名字/2--学号]");
 	scanf("%d", &searchWay);
-	getchar(); 
+	getchar();
 	switch (searchWay)
 	{
 	case 1:
@@ -696,7 +707,7 @@ void Rank_byScore(Stu* pHead, int subject)
 }
 
 //6.显示所有信息(不合格学生or全体学生)
-void Show_all(Stu* pHead)
+void Show_all_selection(Stu* pHead)
 {
 	system("cls");
 
